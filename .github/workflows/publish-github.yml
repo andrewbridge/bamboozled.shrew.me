@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
       # Replace -%VERSION% with the current commit hash in src/sw.js
       - name: Replace Version in sw.js
         run: |
@@ -37,11 +37,11 @@ jobs:
           sed -i "s/-%VERSION%/$COMMIT_HASH/g" src/sw.js &&
           sed -i "s|%API_URL%|${{ vars.API_URL }}|g" src/sw.js
       - name: Setup Pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v5
         with:
           path: 'src'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
